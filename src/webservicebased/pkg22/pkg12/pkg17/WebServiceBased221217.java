@@ -5,6 +5,9 @@
  */
 package webservicebased.pkg22.pkg12.pkg17;
 
+import java.util.Scanner;
+import org.json.JSONObject;
+
 /**
  *
  * @author tarasvolianskyi
@@ -20,9 +23,14 @@ public class WebServiceBased221217 {
         SortService sortService = new SortService(myListForSort);
         sortService.sort(SortService.ASC);
         sortService.printArray();*/
-
-        SortServiceHelper sortServiceHelper = new SortServiceHelper();
-        sortServiceHelper.startService("{\"descending\":false,\"array\":[9,7,3,15]}");
+        Scanner scanner = new Scanner(System.in);
+        while (1 == 1) {
+            String request = scanner.nextLine();
+            SortServiceHelper sortServiceHelper = new SortServiceHelper();
+            //sortServiceHelper.startService("{\"descending\":false,\"array\":[9,7,3,15]}");
+            JSONObject result = sortServiceHelper.startService(request);
+            System.out.println(result);
+        }
 
     }
 
