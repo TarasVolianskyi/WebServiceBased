@@ -32,16 +32,17 @@ public class SortService implements Callable<JSONObject> {
         //TODO add type of sort
         //Arrays.sort(myListSort);
 
-       // SortingMethods.bubble_srt(myListSort);
-        SortingMethods se = new SortingMethods();
-        se.sort(myListSort);
-        try {
+        //SortingMethods.bubble_srt(myListSort);
+        //SortingMethods se = new SortingMethods();
+        //se.sort(myListSort);
+        //se.sortMerge(myListSort);
+        /*  try {
             Thread.sleep(5000);
         } catch (InterruptedException ex) {
             Logger.getLogger(SortService.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        //doSelectionSort(myListSort);
-        //doInsertionSort(myListSort);
+        }*/
+        //SortingMethods.doSelectionSort(myListSort);
+        //SortingMethods.doInsertionSort(myListSort);
         return myListSort;
     }
 
@@ -62,7 +63,6 @@ public class SortService implements Callable<JSONObject> {
 
     @Override
     public JSONObject call() throws Exception {
-        //TODO add type of sort
         JSONObject result = new JSONObject();
         //Arrays.sort(myListSort);
         SortingMethods.bubble_srt(myListSort);

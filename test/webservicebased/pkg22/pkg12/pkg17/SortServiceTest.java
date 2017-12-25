@@ -55,7 +55,7 @@ public class SortServiceTest {
 
     @Test
     public void testSortMillion() {
-        int[] myListForSort = SortService.createNewArray(100000, 1000);
+        int[] myListForSort = SortService.createNewArray(10000, 100);
         int[] mySortedList = Arrays.copyOf(myListForSort, myListForSort.length);
 
         Arrays.sort(mySortedList);

@@ -5,6 +5,7 @@
  */
 package webservicebased.pkg22.pkg12.pkg17;
 
+import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -23,29 +24,56 @@ public class SortServiceHelper {
     private ExecutorService executorService;
 
     public SortServiceHelper() {
-        executorService = Executors.newFixedThreadPool(1);
+        executorService = Executors.newFixedThreadPool(1);//Number of threads
     }
 
     public JSONObject startService(String jsonString) {
-       JSONObject resultJSONObject = null;
+        JSONObject resultJSONObject = null;
         try {
-            JSONObject jSONObject = new JSONObject(jsonString);
+          /*  JSONObject jSONObject = new JSONObject(jsonString);
             System.out.println("descending " + jSONObject.getBoolean("descending"));
-            System.out.println("array " + jSONObject.getJSONArray("array"));
+            System.out.println("array777* " + jSONObject.getJSONArray("array"));*/
+            /*
+ArrayList arrayList = new ArrayList();
+            for (int i = 0; i < jSONObject.getJSONArray("array").length(); i++) {
+                int myNewInt = Integer.parseInt(jSONObject.getJSONArray("array").toString());
+                arrayList.add(myNewInt+1);
+            }*/
 
-            SortService sortService = new SortService(new int[]{1, 5, 3, 8, 9});
+//            SortService sortService = new SortService(new int[]{1, 5, 3, 8, 9, 77, 88});
+            SortService sortService = new SortService(getIntArrayFromJsonString(jsonString));
             sortService.sort(SortService.ASC);
             Future<JSONObject> futureJsonObj = executorService.submit(sortService);
-            resultJSONObject=futureJsonObj.get();
+            resultJSONObject = futureJsonObj.get();
             //TODO transfer elements from jsonobj from str to int
-        } catch (JSONException ex) {
-            Logger.getLogger(SortServiceHelper.class.getName()).log(Level.SEVERE, null, ex);
+      //  } catch (JSONException ex) {
+        //    Logger.getLogger(SortServiceHelper.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InterruptedException ex) {
             Logger.getLogger(SortServiceHelper.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ExecutionException ex) {
             Logger.getLogger(SortServiceHelper.class.getName()).log(Level.SEVERE, null, ex);
         }
         return resultJSONObject;
+    }
+
+    private static int[] getIntArrayFromJsonString(final String source) {
+        JSONObject jSONObject = null;
+        String dataForArray = "";
+        try {
+            jSONObject = new JSONObject(source);
+            String dataFromJson = jSONObject.getJSONArray("array").toString();
+            dataForArray = dataFromJson.substring(1, dataFromJson.length() - 1);
+        } catch (JSONException ex) {
+            Logger.getLogger(WebServiceBased221217.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        String[] integersAsText = dataForArray.split(",");
+        int[] results = new int[integersAsText.length];
+        int i = 0;
+        for (String textValue : integersAsText) {
+            results[i] = Integer.parseInt(textValue);
+            i++;
+        }
+        return results;
     }
 
 }
