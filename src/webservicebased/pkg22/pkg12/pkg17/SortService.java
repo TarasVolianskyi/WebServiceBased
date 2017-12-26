@@ -28,13 +28,18 @@ public class SortService implements Callable<JSONObject> {
         this.myListSort = myListSort;
     }
 
-    public int[] sort(int typeOfSort) {
-        //TODO add type of sort
+    public int[] sortServ(int typeOfSort) {
         //Arrays.sort(myListSort);
 
-        //SortingMethods.bubble_srt(myListSort);
-        //SortingMethods se = new SortingMethods();
-        //se.sort(myListSort);
+        if (typeOfSort == ASC) {
+            SortingMethods se = new SortingMethods();
+            se.sort(myListSort);
+        } else if (typeOfSort == DESK) {
+            SortingMethods se = new SortingMethods();
+            se.sort(myListSort);
+            reverseArray(myListSort);
+        }
+
         //se.sortMerge(myListSort);
         /*  try {
             Thread.sleep(5000);
@@ -65,11 +70,18 @@ public class SortService implements Callable<JSONObject> {
     public JSONObject call() throws Exception {
         JSONObject result = new JSONObject();
         //Arrays.sort(myListSort);
-        SortingMethods.bubble_srt(myListSort);
+        // SortingMethods.bubble_srt(myListSort);
         //doSelectionSort(myListSort);
         //doInsertionSort(myListSort);
         result.put("result", myListSort);
         return result;
     }
 
+    public static void reverseArray(int[] arrayForReverse) {
+        for (int i = 0; i < arrayForReverse.length / 2; i++) {
+            int temp = arrayForReverse[i];
+            arrayForReverse[i] = arrayForReverse[arrayForReverse.length - 1 - i];
+            arrayForReverse[arrayForReverse.length - 1 - i] = temp;
+        }
+    }
 }
