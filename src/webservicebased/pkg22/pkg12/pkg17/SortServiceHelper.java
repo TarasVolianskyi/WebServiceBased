@@ -30,9 +30,9 @@ public class SortServiceHelper {
     public JSONObject startService(String jsonString) {
         JSONObject resultJSONObject = null;
         try {
-          /*  JSONObject jSONObject = new JSONObject(jsonString);
+            /* JSONObject jSONObject = new JSONObject(jsonString);
             System.out.println("descending " + jSONObject.getBoolean("descending"));
-            System.out.println("array777* " + jSONObject.getJSONArray("array"));*/
+            System.out.println("array777* " + jSONObject.getJSONArray("array"));
             /*
 ArrayList arrayList = new ArrayList();
             for (int i = 0; i < jSONObject.getJSONArray("array").length(); i++) {
@@ -42,12 +42,9 @@ ArrayList arrayList = new ArrayList();
 
 //            SortService sortService = new SortService(new int[]{1, 5, 3, 8, 9, 77, 88});
             SortService sortService = new SortService(getIntArrayFromJsonString(jsonString));
-            sortService.sort(SortService.ASC);
+            sortService.sortServ(SortService.DESK);
             Future<JSONObject> futureJsonObj = executorService.submit(sortService);
             resultJSONObject = futureJsonObj.get();
-            //TODO transfer elements from jsonobj from str to int
-      //  } catch (JSONException ex) {
-        //    Logger.getLogger(SortServiceHelper.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InterruptedException ex) {
             Logger.getLogger(SortServiceHelper.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ExecutionException ex) {
@@ -74,6 +71,18 @@ ArrayList arrayList = new ArrayList();
             i++;
         }
         return results;
+    }
+
+    private static boolean getBooleanFromJsonString(final String source) {
+        JSONObject jSONObject = null;
+        boolean dataFromJson = false;
+        try {
+            jSONObject = new JSONObject(source);
+            dataFromJson = jSONObject.getBoolean("descending");
+        } catch (JSONException ex) {
+            Logger.getLogger(WebServiceBased221217.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return dataFromJson;
     }
 
 }
