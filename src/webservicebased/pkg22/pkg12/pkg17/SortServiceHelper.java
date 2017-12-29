@@ -32,17 +32,21 @@ public class SortServiceHelper {
         try {
             /* JSONObject jSONObject = new JSONObject(jsonString);
             System.out.println("descending " + jSONObject.getBoolean("descending"));
-            System.out.println("array777* " + jSONObject.getJSONArray("array"));
+            System.out.println("array " + jSONObject.getJSONArray("array"));
             /*
-ArrayList arrayList = new ArrayList();
+            ArrayList arrayList = new ArrayList();
             for (int i = 0; i < jSONObject.getJSONArray("array").length(); i++) {
                 int myNewInt = Integer.parseInt(jSONObject.getJSONArray("array").toString());
                 arrayList.add(myNewInt+1);
             }*/
-
 //            SortService sortService = new SortService(new int[]{1, 5, 3, 8, 9, 77, 88});
             SortService sortService = new SortService(getIntArrayFromJsonString(jsonString));
-            sortService.sortServ(SortService.DESK);
+            if (getBooleanFromJsonString(jsonString) == false) {
+                sortService.sortServ(SortService.ASC);
+            } else {
+                sortService.sortServ(SortService.DESK);
+            }
+
             Future<JSONObject> futureJsonObj = executorService.submit(sortService);
             resultJSONObject = futureJsonObj.get();
         } catch (InterruptedException ex) {
@@ -75,14 +79,14 @@ ArrayList arrayList = new ArrayList();
 
     private static boolean getBooleanFromJsonString(final String source) {
         JSONObject jSONObject = null;
-        boolean dataFromJson = false;
+        boolean booleanDataFromJson = false;
         try {
             jSONObject = new JSONObject(source);
-            dataFromJson = jSONObject.getBoolean("descending");
+            booleanDataFromJson = jSONObject.getBoolean("descending");
         } catch (JSONException ex) {
             Logger.getLogger(WebServiceBased221217.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return dataFromJson;
+        return booleanDataFromJson;
     }
 
 }

@@ -24,7 +24,7 @@ public class SortServiceTest {
         int[] mySortedList = {1, 2, 3, 4, 7, 9};
 
         SortService sortService = new SortService(myListForSort);
-        sortService.sort(SortService.ASC);
+        sortService.sortServ(SortService.ASC);
 
         assertArrayEquals(mySortedList, myListForSort);
     }
@@ -35,7 +35,7 @@ public class SortServiceTest {
         int[] mySortedList = {9, 7, 4, 3, 2, 1};
 
         SortService sortService = new SortService(myListForSort);
-        sortService.sort(SortService.DESK);
+        sortService.sortServ(SortService.DESK);
 
         assertArrayEquals(mySortedList, myListForSort);
     }
@@ -48,7 +48,7 @@ public class SortServiceTest {
         Arrays.sort(mySortedList);
 
         SortService sortService = new SortService(myListForSort);
-        sortService.sort(SortService.ASC);
+        sortService.sortServ(SortService.ASC);
 
         assertArrayEquals(mySortedList, myListForSort);
     }
@@ -61,7 +61,7 @@ public class SortServiceTest {
         Arrays.sort(mySortedList);
 
         SortService sortService = new SortService(myListForSort);
-        sortService.sort(SortService.ASC);
+        sortService.sortServ(SortService.ASC);
 
         assertArrayEquals(mySortedList, myListForSort);
     }

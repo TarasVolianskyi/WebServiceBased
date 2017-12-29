@@ -39,15 +39,6 @@ public class SortService implements Callable<JSONObject> {
             se.sort(myListSort);
             reverseArray(myListSort);
         }
-
-        //se.sortMerge(myListSort);
-        /*  try {
-            Thread.sleep(5000);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(SortService.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
-        //SortingMethods.doSelectionSort(myListSort);
-        //SortingMethods.doInsertionSort(myListSort);
         return myListSort;
     }
 
